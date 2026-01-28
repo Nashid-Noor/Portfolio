@@ -111,9 +111,7 @@ function getProjects(): Project[] {
   return projectsCache.projects;
 }
 
-function getBaseUrl(): string {
-  return process.env.PORTFOLIO_BASE_URL || "http://localhost:3000";
-}
+
 
 // Tool definitions
 export const toolDefinitions = [
@@ -206,8 +204,6 @@ export async function callTool(
   name: string,
   args: Record<string, unknown>
 ): Promise<string> {
-  const baseUrl = getBaseUrl();
-
   switch (name) {
     case "search_site": {
       const query = ((args?.query as string) || "").toLowerCase();
@@ -215,7 +211,6 @@ export async function callTool(
         type: string;
         title: string;
         snippet: string;
-        url: string;
       }[] = [];
 
       const site = getSite();
@@ -232,7 +227,6 @@ export async function callTool(
           type: "about",
           title: `About ${site.name}`,
           snippet: site.bio,
-          url: `${baseUrl}/about`,
         });
       }
 
@@ -242,7 +236,6 @@ export async function callTool(
           type: "resume",
           title: "Professional Summary",
           snippet: resume.summary,
-          url: `${baseUrl}/resume`,
         });
       }
 
@@ -257,7 +250,6 @@ export async function callTool(
             type: "experience",
             title: `${exp.role} at ${exp.company}`,
             snippet: exp.highlights.slice(0, 2).join(". "),
-            url: `${baseUrl}/resume`,
           });
         }
       });
@@ -274,7 +266,6 @@ export async function callTool(
             type: "project",
             title: project.title,
             snippet: project.shortDescription,
-            url: `${baseUrl}/projects/${project.slug}`,
           });
         }
       });
@@ -289,7 +280,6 @@ export async function callTool(
           type: "skills",
           title: "Technical Skills",
           snippet: `Matching skills: ${matchedSkills.join(", ")}`,
-          url: `${baseUrl}/about`,
         });
       }
 
@@ -326,7 +316,6 @@ export async function callTool(
         featured: p.featured,
         date: p.date,
         status: p.status,
-        url: `${baseUrl}/projects/${p.slug}`,
         githubUrl: p.githubUrl,
         demoUrl: p.demoUrl,
       }));
@@ -355,7 +344,7 @@ export async function callTool(
       }
 
       return JSON.stringify(
-        { ...project, url: `${baseUrl}/projects/${project.slug}` },
+        { ...project },
         null,
         2
       );
@@ -367,7 +356,6 @@ export async function callTool(
         {
           skills: resume.skills,
           certifications: resume.certifications,
-          url: `${baseUrl}/about`,
         },
         null,
         2
@@ -381,16 +369,15 @@ export async function callTool(
       }
 
       const resume = getResume();
-      const url = `${baseUrl}/resume`;
 
       switch (section) {
         case "summary":
-          return JSON.stringify({ summary: resume.summary, url }, null, 2);
+          return JSON.stringify({ summary: resume.summary }, null, 2);
         case "experience":
-          return JSON.stringify({ experience: resume.experience, url }, null, 2);
+          return JSON.stringify({ experience: resume.experience }, null, 2);
         case "education":
           return JSON.stringify(
-            { education: resume.education, certifications: resume.certifications, url },
+            { education: resume.education, certifications: resume.certifications },
             null,
             2
           );
@@ -406,7 +393,6 @@ export async function callTool(
           name: site.name,
           location: site.location,
           socials: site.socials,
-          url: `${baseUrl}/contact`,
         },
         null,
         2
