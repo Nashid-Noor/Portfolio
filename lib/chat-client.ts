@@ -48,11 +48,37 @@ const toolCallSchema = z.object({
  * Expected format: TOOL_CALL: {"tool":"name","args":{...}}
  */
 function parseFallbackToolCall(content: string): ToolCall | null {
-  const toolCallMatch = content.match(/TOOL_CALL:\s*(\{[\s\S]*?\})\s*$/);
-  if (!toolCallMatch) return null;
+  const marker = "TOOL_CALL:";
+  const invokeIndex = content.indexOf(marker);
+
+  if (invokeIndex === -1) return null;
+
+  // Find the start of the JSON object
+  let startIndex = content.indexOf("{", invokeIndex);
+  if (startIndex === -1) return null;
+
+  // Robustly find the matching closing brace
+  let balance = 0;
+  let endIndex = -1;
+
+  for (let i = startIndex; i < content.length; i++) {
+    if (content[i] === "{") {
+      balance++;
+    } else if (content[i] === "}") {
+      balance--;
+      if (balance === 0) {
+        endIndex = i + 1;
+        break;
+      }
+    }
+  }
+
+  if (endIndex === -1) return null;
+
+  const jsonStr = content.substring(startIndex, endIndex);
 
   try {
-    const parsed = JSON.parse(toolCallMatch[1]);
+    const parsed = JSON.parse(jsonStr);
     const validated = toolCallSchema.parse(parsed);
     return {
       id: `call_${Date.now()}`,
@@ -62,7 +88,8 @@ function parseFallbackToolCall(content: string): ToolCall | null {
         arguments: JSON.stringify(validated.args),
       },
     };
-  } catch {
+  } catch (error) {
+    console.error("Failed to parse tool call JSON:", error);
     return null;
   }
 }
