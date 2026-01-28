@@ -326,75 +326,71 @@ async function callHuggingFace(
 async function callGemini(
   messages: ChatMessage[]
 ): Promise<ChatResponse> {
-  const { GoogleGenerativeAI } = await import("@google/generative-ai");
+  try {
+    const { GoogleGenerativeAI } = await import("@google/generative-ai");
 
-  const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
-  const model = genAI.getGenerativeModel({
-    model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
-    // We rely on system prompt for tool definitions in this pattern
-  });
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
+    const model = genAI.getGenerativeModel({
+      model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+    });
 
-  // Extract system prompt
-  const systemMessage = messages.find(m => m.role === "system");
-  const conversationHistory = messages.filter(m => m.role !== "system");
+    // Extract system prompt
+    const systemMessage = messages.find(m => m.role === "system");
+    const conversationHistory = messages.filter(m => m.role !== "system");
 
-  // Format for Gemini
-  // Note: We need to append the system prompt to the first user message or handle it via systemInstruction
-  // But for this pattern where we inject tool definitions in text, we'll prepend it.
+    // Convert conversation to prompt string for simple generation (since we manage state)
+    // Or use chatSession if we want multi-turn.
+    // Given the stateless nature of this function, we'll reconstruct the chat context.
 
-  let finalPrompt = "";
-  if (systemMessage) {
-    finalPrompt += systemMessage.content + "\n\n";
-  }
+    const chatHistory = conversationHistory.map(m => {
+      // Gemini roles: 'user' or 'model'
+      return {
+        role: m.role === "user" ? "user" : "model",
+        parts: [{ text: m.content }],
+      };
+    });
 
-  // Convert conversation to prompt string for simple generation (since we manage state)
-  // Or use chatSession if we want multi-turn. 
-  // Given the stateless nature of this function, we'll reconstruct the chat context.
+    // For the very last message, we want to generate a response
+    const lastMessage = chatHistory.pop();
+    if (!lastMessage) throw new Error("No messages provided");
 
-  const chatHistory = conversationHistory.map(m => {
+    const chat = model.startChat({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      history: chatHistory as any,
+      systemInstruction: systemMessage ? { role: "system", parts: [{ text: systemMessage.content }] } : undefined,
+    });
+
+    const result = await chat.sendMessage(lastMessage.parts[0].text);
+    const response = result.response.text();
+
+    // Check fallback format
+    const fallbackToolCall = parseFallbackToolCall(response);
+    if (fallbackToolCall) {
+      return {
+        content: null,
+        toolCalls: [fallbackToolCall],
+        finishReason: "tool_calls",
+      };
+    }
+
+    const finalAnswer = parseFinalAnswer(response);
+    if (finalAnswer) {
+      return {
+        content: finalAnswer,
+        toolCalls: null,
+        finishReason: "stop",
+      };
+    }
+
     return {
-      role: m.role === "user" ? "user" : "model",
-      parts: [{ text: m.content }],
-    };
-  });
-
-  // For the very last message, we want to generate a response
-  const lastMessage = chatHistory.pop();
-  if (!lastMessage) throw new Error("No messages provided");
-
-  const chat = model.startChat({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    history: chatHistory as any,
-    systemInstruction: systemMessage ? { role: "system", parts: [{ text: systemMessage.content }] } : undefined,
-  });
-
-  const result = await chat.sendMessage(lastMessage.parts[0].text);
-  const response = result.response.text();
-
-  // Check fallback format
-  const fallbackToolCall = parseFallbackToolCall(response);
-  if (fallbackToolCall) {
-    return {
-      content: null,
-      toolCalls: [fallbackToolCall],
-      finishReason: "tool_calls",
-    };
-  }
-
-  const finalAnswer = parseFinalAnswer(response);
-  if (finalAnswer) {
-    return {
-      content: finalAnswer,
+      content: response,
       toolCalls: null,
       finishReason: "stop",
     };
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    throw new Error(`Gemini API failed: ${error instanceof Error ? error.message : String(error)}`);
   }
-
-  return {
-    content: response,
-    toolCalls: null,
-    finishReason: "stop",
-  };
 }
 
 /**
