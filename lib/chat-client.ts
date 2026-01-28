@@ -321,18 +321,100 @@ async function callHuggingFace(
 }
 
 /**
+ * Call Google Gemini API
+ */
+async function callGemini(
+  messages: ChatMessage[],
+  tools?: ToolDefinition[]
+): Promise<ChatResponse> {
+  const { GoogleGenerativeAI } = await import("@google/generative-ai");
+
+  const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
+  const model = genAI.getGenerativeModel({
+    model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+    // We rely on system prompt for tool definitions in this pattern
+  });
+
+  // Extract system prompt
+  const systemMessage = messages.find(m => m.role === "system");
+  const conversationHistory = messages.filter(m => m.role !== "system");
+
+  // Format for Gemini
+  // Note: We need to append the system prompt to the first user message or handle it via systemInstruction
+  // But for this pattern where we inject tool definitions in text, we'll prepend it.
+
+  let finalPrompt = "";
+  if (systemMessage) {
+    finalPrompt += systemMessage.content + "\n\n";
+  }
+
+  // Convert conversation to prompt string for simple generation (since we manage state)
+  // Or use chatSession if we want multi-turn. 
+  // Given the stateless nature of this function, we'll reconstruct the chat context.
+
+  const chatHistory = conversationHistory.map(m => {
+    return {
+      role: m.role === "user" ? "user" : "model",
+      parts: [{ text: m.content }],
+    };
+  });
+
+  // For the very last message, we want to generate a response
+  const lastMessage = chatHistory.pop();
+  if (!lastMessage) throw new Error("No messages provided");
+
+  const chat = model.startChat({
+    history: chatHistory as any,
+    systemInstruction: systemMessage ? { role: "system", parts: [{ text: systemMessage.content }] } : undefined,
+  });
+
+  const result = await chat.sendMessage(lastMessage.parts[0].text);
+  const response = result.response.text();
+
+  // Check fallback format
+  const fallbackToolCall = parseFallbackToolCall(response);
+  if (fallbackToolCall) {
+    return {
+      content: null,
+      toolCalls: [fallbackToolCall],
+      finishReason: "tool_calls",
+    };
+  }
+
+  const finalAnswer = parseFinalAnswer(response);
+  if (finalAnswer) {
+    return {
+      content: finalAnswer,
+      toolCalls: null,
+      finishReason: "stop",
+    };
+  }
+
+  return {
+    content: response,
+    toolCalls: null,
+    finishReason: "stop",
+  };
+}
+
+/**
  * Unified chat client interface
  */
 export async function chat(
   messages: ChatMessage[],
   tools?: ToolDefinition[]
 ): Promise<ChatResponse> {
+  // Check for Google Key first
+  if (process.env.GOOGLE_API_KEY) {
+    return callGemini(messages, tools);
+  }
+
   const apiKey = process.env.HF_API_KEY;
   const model = process.env.HF_MODEL;
   const compatModel = process.env.OPENAI_COMPAT_MODEL;
 
   if (!apiKey) {
-    throw new Error("HF_API_KEY environment variable is required");
+    throw new Error("HF_API_KEY or GOOGLE_API_KEY environment variable is required");
   }
 
   if (!model && !compatModel) {

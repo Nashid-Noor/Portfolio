@@ -112,6 +112,9 @@ function getClientIP(request: NextRequest): string {
 // Maximum tool call iterations to prevent infinite loops
 const MAX_TOOL_ITERATIONS = 5;
 
+// Allow execution up to 60 seconds (Vercel Hobby Limit)
+export const maxDuration = 60;
+
 export async function POST(request: NextRequest) {
   // Rate limiting
   const clientIP = getClientIP(request);
