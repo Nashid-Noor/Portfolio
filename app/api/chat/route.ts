@@ -115,7 +115,7 @@ const MAX_TOOL_ITERATIONS = 5;
 export async function POST(request: NextRequest) {
   // Rate limiting
   const clientIP = getClientIP(request);
-  const rateLimit = checkRateLimit(clientIP);
+  const rateLimit = await checkRateLimit(clientIP);
 
   if (!rateLimit.allowed) {
     return NextResponse.json(
