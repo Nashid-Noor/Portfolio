@@ -4,7 +4,7 @@ This is my personal portfolio website. It features a custom AI agent that can ac
 
 ## How It Works
 
-I implemented a **Tool-Use / Function-Calling** architecture (inspired by the [Model Context Protocol](https://modelcontextprotocol.io/)). This means the LLM doesn't just guess or rely on pre-trained knowledge; it has access to specific "tools" that let it query my portfolio data in real-time.
+I implemented a **Tool-Use / Function-Calling** architecture. This means the LLM doesn't just guess or rely on pre-trained knowledge; it has access to specific "tools" that let it query my portfolio data in real-time.
 
 ### The Flow
 When you ask, *"What experience do you have with MLOps?"*:
