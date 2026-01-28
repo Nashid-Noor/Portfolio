@@ -324,8 +324,7 @@ async function callHuggingFace(
  * Call Google Gemini API
  */
 async function callGemini(
-  messages: ChatMessage[],
-  tools?: ToolDefinition[]
+  messages: ChatMessage[]
 ): Promise<ChatResponse> {
   const { GoogleGenerativeAI } = await import("@google/generative-ai");
 
@@ -364,6 +363,7 @@ async function callGemini(
   if (!lastMessage) throw new Error("No messages provided");
 
   const chat = model.startChat({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     history: chatHistory as any,
     systemInstruction: systemMessage ? { role: "system", parts: [{ text: systemMessage.content }] } : undefined,
   });
@@ -406,7 +406,7 @@ export async function chat(
 ): Promise<ChatResponse> {
   // Check for Google Key first
   if (process.env.GOOGLE_API_KEY) {
-    return callGemini(messages, tools);
+    return callGemini(messages);
   }
 
   const apiKey = process.env.HF_API_KEY;
