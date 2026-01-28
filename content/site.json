@@ -1,0 +1,41 @@
+{
+  "name": "Nashid Noor Mohammed",
+  "title": "Data Scientist & ML Engineer",
+  "tagline": "I build production-ready AI systems",
+  "bio": "I'm a data scientist and ML engineer passionate about developing practical AI solutions. I specialize in NLP, computer vision, and MLOps, with experience shipping models to production at scale.",
+  "avatar": "/avatar.jpg",
+  "location": "San Francisco, CA",
+  "socials": {
+    "github": "https://github.com/Nashid-Noor",
+    "linkedin": "https://www.linkedin.com/in/nashidnoor",
+    "x": "https://x.com/NashidNoor",
+    "email": "nashidnoor16@gmail.com"
+  },
+  "highlights": [
+    "I ship end-to-end AI systems from modelling to deployment with focus on latency, reliability, and measurable quality",
+    "3+ years industry experience delivering production ML in enterprise environments"
+  ],
+  "currentFocus": [
+    "Large Language Model optimization",
+    "Multi-agent systems",
+    "Production ML pipelines"
+  ],
+  "navigation": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Projects",
+      "href": "/projects"
+    },
+    {
+      "label": "Resume",
+      "href": "/resume"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ]
+}

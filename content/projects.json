@@ -1,0 +1,121 @@
+{
+  "projects": [
+    {
+      "slug": "mixture-of-agents-optimizer",
+      "title": "Mixture of Agents Optimizer",
+      "shortDescription": "Optimized multi-agent LLM orchestration system reducing latency by 65% while maintaining output quality.",
+      "description": "Built an intelligent orchestration layer for multi-agent LLM systems that dynamically routes queries to optimal model combinations. The system uses learned routing policies to balance cost, latency, and quality trade-offs in real-time.",
+      "problemStatement": "Multi-agent LLM systems suffer from high latency due to sequential model calls and inefficient routing. Existing approaches don't adapt to query complexity or available resources.",
+      "solution": "Developed a learned router using a lightweight transformer that predicts optimal agent combinations based on query embeddings. Implemented speculative execution for parallel model calls and adaptive caching for common query patterns.",
+      "impact": [
+        "Reduced time-to-first-token (TTFT) by 65%",
+        "Decreased end-to-end latency by 52%",
+        "Maintained 98% quality parity with baseline",
+        "Cut inference costs by 40% through smart routing"
+      ],
+      "metrics": {
+        "ttftReduction": "65%",
+        "latencyReduction": "52%",
+        "qualityParity": "98%",
+        "costReduction": "40%"
+      },
+      "techStack": ["Python", "PyTorch", "FastAPI", "Redis", "Kubernetes"],
+      "tags": ["LLM", "Multi-Agent", "Optimization", "MLOps"],
+      "featured": true,
+      "date": "2024-06",
+      "status": "Production",
+      "githubUrl": "https://github.com/yourname/moa-optimizer",
+      "demoUrl": "https://demo.yourportfolio.com/moa",
+      "links": [
+        { "label": "Blog Post", "url": "https://yourportfolio.com/blog/moa-optimizer" },
+        { "label": "Paper", "url": "https://arxiv.org/abs/example" }
+      ]
+    },
+    {
+      "slug": "biomedical-ner-webapp",
+      "title": "Biomedical NER Web Application",
+      "shortDescription": "Production NER system for extracting medical entities from clinical text with 0.89 Macro-F1.",
+      "description": "Developed a full-stack web application for biomedical named entity recognition, enabling researchers and clinicians to extract structured information from unstructured clinical notes and research papers.",
+      "problemStatement": "Healthcare organizations struggle to extract structured data from millions of unstructured clinical documents. Manual annotation is expensive and doesn't scale.",
+      "solution": "Fine-tuned BioBERT on custom medical entity dataset combining multiple biomedical corpora. Built intuitive web interface with real-time extraction, entity linking to medical ontologies (UMLS, SNOMED), and batch processing capabilities.",
+      "impact": [
+        "Achieved 0.89 Macro-F1 on held-out test set",
+        "Processed 2M+ clinical documents in production",
+        "Reduced manual annotation time by 75%",
+        "Adopted by 3 healthcare research institutions"
+      ],
+      "metrics": {
+        "macroF1": "0.89",
+        "documentsProcessed": "2M+",
+        "annotationTimeReduction": "75%",
+        "institutionsAdopted": "3"
+      },
+      "techStack": ["Python", "PyTorch", "HuggingFace", "FastAPI", "React", "PostgreSQL"],
+      "tags": ["NLP", "Healthcare", "NER", "Full-Stack"],
+      "featured": true,
+      "date": "2024-03",
+      "status": "Production",
+      "githubUrl": "https://github.com/yourname/biomedical-ner",
+      "demoUrl": "https://demo.yourportfolio.com/ner",
+      "links": []
+    },
+    {
+      "slug": "clip-prompt-tuning",
+      "title": "CLIP Prompt Tuning for Domain Adaptation",
+      "shortDescription": "Novel prompt tuning approach achieving 12% accuracy improvement on specialized image domains.",
+      "description": "Developed a parameter-efficient method for adapting CLIP to specialized image domains without full fine-tuning. The approach learns optimal prompt embeddings that steer the model toward domain-specific visual concepts.",
+      "problemStatement": "CLIP struggles with specialized domains (medical imaging, satellite imagery, industrial inspection) due to distribution shift from web-scale training data. Full fine-tuning is expensive and risks catastrophic forgetting.",
+      "solution": "Implemented context optimization (CoOp) with domain-specific regularization. Added visual prompt tuning (VPT) layer that learns to inject domain knowledge into the vision encoder. Combined with few-shot learning for rapid domain adaptation.",
+      "impact": [
+        "12% accuracy improvement on medical imaging benchmark",
+        "8% improvement on satellite imagery classification",
+        "Only 0.1% of parameters trained vs full fine-tuning",
+        "Adapts to new domains with just 16 examples"
+      ],
+      "metrics": {
+        "accuracyImprovementMedical": "12%",
+        "accuracyImprovementSatellite": "8%",
+        "parameterEfficiency": "0.1%",
+        "fewShotExamples": "16"
+      },
+      "techStack": ["Python", "PyTorch", "CLIP", "Weights & Biases", "HuggingFace"],
+      "tags": ["Computer Vision", "CLIP", "Few-Shot Learning", "Research"],
+      "featured": true,
+      "date": "2024-01",
+      "status": "Research",
+      "githubUrl": "https://github.com/yourname/clip-prompt-tuning",
+      "demoUrl": null,
+      "links": [
+        { "label": "Research Paper", "url": "https://arxiv.org/abs/example2" }
+      ]
+    },
+    {
+      "slug": "mcp-trading-assistant",
+      "title": "MCP Trading Assistant",
+      "shortDescription": "Modular AI trading assistant built with Model Context Protocol for extensible financial analysis.",
+      "description": "Built a conversational AI assistant for financial analysis using the Model Context Protocol (MCP). The system provides a modular architecture where specialized tools handle different aspects of trading analysis, portfolio management, and market research.",
+      "problemStatement": "Financial analysts need to query multiple data sources, run various analyses, and synthesize information quickly. Existing tools are siloed and don't integrate well with conversational AI interfaces.",
+      "solution": "Designed an MCP server architecture with specialized tools for market data retrieval, technical analysis, fundamental metrics, portfolio optimization, and risk assessment. Built clean TypeScript SDK with strongly-typed tool interfaces and comprehensive error handling.",
+      "impact": [
+        "Modular design enables easy addition of new analysis tools",
+        "Type-safe MCP implementation ensures reliability",
+        "Sub-second response times for real-time queries",
+        "Open-source architecture adopted by 2 fintech startups"
+      ],
+      "metrics": {
+        "toolCount": "15+",
+        "responseTime": "<1s",
+        "codebaseType": "TypeScript",
+        "adoptedBy": "2 startups"
+      },
+      "techStack": ["TypeScript", "MCP SDK", "Node.js", "PostgreSQL", "Redis"],
+      "tags": ["MCP", "TypeScript", "Finance", "AI Tools"],
+      "featured": false,
+      "date": "2024-08",
+      "status": "Production",
+      "githubUrl": "https://github.com/yourname/mcp-trading-assistant",
+      "demoUrl": null,
+      "links": []
+    }
+  ]
+}

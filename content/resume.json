@@ -1,0 +1,97 @@
+{
+  "summary": "Data Scientist and ML Engineer with 5+ years of experience building production ML systems. Expertise in NLP, computer vision, and MLOps. Proven track record of delivering high-impact AI solutions that drive business value.",
+  "experience": [
+    {
+      "company": "Wipro Limited",
+      "role": "Senior Software Engineer",
+      "period": "June 2023 – August 2024",
+      "location": "India",
+      "highlights": [
+        "Led the integration of Salesforce Einstein Prediction Builder into Enterprise Product Catalog (EPC) and Order Management workflows, enabling real-time predictive decisioning in live production systems.",
+        "Designed and owned ML inference pipelines using Integration Procedures and DataRaptors, orchestrating data preprocessing, model invocation, and downstream execution at enterprise scale.",
+        "Owned end-to-end production rollouts of ML-enabled features, including release validation, defect triage, and post-deployment stabilization in regulated enterprise environments."
+      ]
+    },
+    {
+      "company": "Wipro Limited",
+      "role": "Software Engineer",
+      "period": "July 2021 – May 2023",
+      "location": "India",
+      "highlights": [
+        "Worked on enterprise Salesforce implementations for telecom client (Telefonica), integrating external systems via REST APIs to support large-scale data ingestion, order management, and AI-assisted decision workflows in production.",
+        "Built data transformation, orchestration, and validation logic using DataRaptors and Integration Procedures to support automated decision systems over large datasets."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "The University of Surrey",
+      "degree": "Master of Science in Artificial Intelligence",
+      "focus": "Grade: Distinction",
+      "period": "Sept. 2024 – Sept. 2025"
+    },
+    {
+      "institution": "Vellore Institute of Technology",
+      "degree": "Bachelor of Technology in Electrical and Electronics Engineering",
+      "focus": "CGPA: 8.62/10",
+      "period": "June 2017 – June 2021"
+    }
+  ],
+  "certifications": [],
+  "skills": {
+    "programming": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis"
+    ],
+    "frameworks": [
+      "PyTorch",
+      "Hugging Face",
+      "SpaCy",
+      "NLTK",
+      "NumPy",
+      "Pandas",
+      "scikit-learn",
+      "Keras",
+      "Matplotlib",
+      "FastAPI",
+      "CUDA"
+    ],
+    "cloud_mlops": [
+      "AWS",
+      "GCP",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Git",
+      "GitHub Actions",
+      "MLflow",
+      "Nginx"
+    ],
+    "llm": [
+      "OpenAI-compatible APIs",
+      "LangChain",
+      "LangGraph",
+      "RAG",
+      "Vector Databases",
+      "Tool Calling",
+      "Multi-Agent Systems"
+    ],
+    "ml": [
+      "RNN",
+      "LSTM",
+      "Transformers",
+      "CNNs",
+      "NLP",
+      "Computer Vision",
+      "Time-Series Forecasting",
+      "LLM Fine-Tuning",
+      "Quantization"
+    ]
+  },
+  "pdfUrl": "/resume.pdf"
+}
