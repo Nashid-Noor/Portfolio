@@ -87,7 +87,7 @@ export default function ContactPage() {
               <h3 className="font-semibold mb-2">Response Time</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 I typically respond to emails within 24-48 hours. For urgent matters,
-                feel free to reach out via LinkedIn or Twitter.
+                feel free to reach out via LinkedIn or email.
               </p>
             </div>
           </div>
