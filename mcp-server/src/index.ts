@@ -51,7 +51,6 @@ interface ResumeContent {
     data: string[];
     tools: string[];
   };
-  pdfUrl: string;
 }
 
 interface Project {

@@ -30,14 +30,7 @@ export default function ResumePage() {
                 {site.name} · {site.title}
               </p>
             </div>
-            <a
-              href={resume.pdfUrl}
-              download
-              className="btn btn-primary self-start"
-            >
-              <Download className="w-4 h-4" />
-              Download PDF
-            </a>
+
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">

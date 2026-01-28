@@ -53,7 +53,6 @@ interface ResumeContent {
     llm: string[];
     ml: string[];
   };
-  pdfUrl: string;
 }
 
 interface Project {
