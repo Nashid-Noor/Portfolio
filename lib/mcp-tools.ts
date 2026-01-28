@@ -28,6 +28,7 @@ interface SiteContent {
   highlights: string[];
   currentFocus: string[];
   navigation: { label: string; href: string }[];
+  preferences: { relocation: string; remote: string };
 }
 
 interface ResumeContent {
@@ -392,6 +393,7 @@ export async function callTool(
           name: site.name,
           location: site.location,
           socials: site.socials,
+          preferences: site.preferences,
         },
         null,
         2

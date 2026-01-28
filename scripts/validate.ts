@@ -27,6 +27,10 @@ const siteSchema = z.object({
       href: z.string(),
     })
   ),
+  preferences: z.object({
+    relocation: z.string(),
+    remote: z.string(),
+  }),
 });
 
 const resumeSchema = z.object({
@@ -56,7 +60,6 @@ const resumeSchema = z.object({
     llm: z.array(z.string()),
     ml: z.array(z.string()),
   }),
-  pdfUrl: z.string(),
 });
 
 const projectSchema = z.object({
