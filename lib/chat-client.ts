@@ -327,40 +327,64 @@ async function callGemini(
   messages: ChatMessage[]
 ): Promise<ChatResponse> {
   try {
-    const { GoogleGenerativeAI } = await import("@google/generative-ai");
+    const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } = await import("@google/generative-ai");
 
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
     const model = genAI.getGenerativeModel({
       model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
+      safetySettings: [
+        { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
+        { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
+        { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
+        { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH },
+      ],
     });
 
     // Extract system prompt
     const systemMessage = messages.find(m => m.role === "system");
     const conversationHistory = messages.filter(m => m.role !== "system");
 
-    // Convert conversation to prompt string for simple generation (since we manage state)
-    // Or use chatSession if we want multi-turn.
-    // Given the stateless nature of this function, we'll reconstruct the chat context.
+    // Convert conversation to linear User/Model text history
+    // This is crucial to satisfy Gemini's strict User-Model-User-Model turn requirement.
 
-    const chatHistory = conversationHistory.map(m => {
-      // Gemini roles: 'user' or 'model'
-      return {
-        role: m.role === "user" ? "user" : "model",
-        parts: [{ text: m.content }],
-      };
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const historyParts: any[] = [];
 
-    // For the very last message, we want to generate a response
-    const lastMessage = chatHistory.pop();
-    if (!lastMessage) throw new Error("No messages provided");
+    for (const m of conversationHistory) {
+      if (m.role === "user") {
+        historyParts.push({ role: "user", parts: [{ text: m.content }] });
+      } else if (m.role === "assistant") {
+        // If content is empty/null but has tool_calls, we must represent it as text 
+        let textContent = m.content || "";
+        if (!textContent && m.tool_calls && m.tool_calls.length > 0) {
+          const tc = m.tool_calls[0];
+          textContent = `TOOL_CALL: ${JSON.stringify({ tool: tc.function.name, args: JSON.parse(tc.function.arguments) })}`;
+        }
+        historyParts.push({ role: "model", parts: [{ text: textContent }] });
+      } else if (m.role === "tool") {
+        // Simulate tool output as User message
+        historyParts.push({ role: "user", parts: [{ text: `Tool Output: ${m.content}` }] });
+      }
+    }
+
+    // Prepare the last message (prompt)
+    const lastPart = historyParts.pop();
+    if (!lastPart) throw new Error("No messages provided");
+
+    // Ensure we are sending a user message
+    if (lastPart.role !== "user") {
+      // If the last thing was a model response, something is wrong with the flow unless we are forcing a continuation.
+      // But for this use case, it should be user.
+      // If it WAS model (e.g. tool call just happened?), we might need to be careful.
+      // But 'tool' role maps to 'user' above, so we are good.
+    }
 
     const chat = model.startChat({
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      history: chatHistory as any,
+      history: historyParts,
       systemInstruction: systemMessage ? { role: "system", parts: [{ text: systemMessage.content }] } : undefined,
     });
 
-    const result = await chat.sendMessage(lastMessage.parts[0].text);
+    const result = await chat.sendMessage(lastPart.parts[0].text);
     const response = result.response.text();
 
     // Check fallback format
