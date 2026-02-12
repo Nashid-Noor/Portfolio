@@ -1,119 +1,419 @@
 {
   "projects": [
     {
-      "slug": "mixture-of-agents-optimizer",
-      "title": "Mixture of Agents Optimizer",
-      "shortDescription": "Optimized multi-agent LLM orchestration system reducing latency by 65% while maintaining output quality.",
-      "description": "Built an intelligent orchestration layer for multi-agent LLM systems that dynamically routes queries to optimal model combinations. The system uses learned routing policies to balance cost, latency, and quality trade-offs in real-time.",
-      "problemStatement": "Multi-agent LLM systems suffer from high latency due to sequential model calls and inefficient routing. Existing approaches don't adapt to query complexity or available resources.",
-      "solution": "Developed a learned router using a lightweight transformer that predicts optimal agent combinations based on query embeddings. Implemented speculative execution for parallel model calls and adaptive caching for common query patterns.",
+      "slug": "efficient-mixture-of-agents",
+      "title": "Efficient Mixture of Agents (MoA)",
+      "shortDescription": "Multi-layer MoA framework that reduced LLM Time-to-First-Token (TTFT) by ~1.8× while improving quality on AlpacaEval 2.0, MT-Bench, and Arena-Hard.",
+      "description": "Built a multi-layer Mixture-of-Agents (MoA) framework inspired by Mixture-of-Experts (MoE) to orchestrate multiple LLMs (Qwen, LLaMA, Mistral, DeepSeek). Focused on reducing response wait time (TTFT) via routing and TTFT optimization strategies, while measuring quality across standard LLM evaluation benchmarks.",
+      "problemStatement": "Multi-model / multi-agent LLM systems often increase latency (especially TTFT) due to orchestration overhead and sequential calls, making interactive use painful and expensive.",
+      "solution": "Implemented a multi-layer orchestration framework that routes queries across multiple LLMs and applies TTFT optimization strategies across both cloud and local inference providers. Evaluated improvements using AlpacaEval 2.0, MT-Bench, and Arena-Hard.",
       "impact": [
-        "Reduced time-to-first-token (TTFT) by 65%",
-        "Decreased end-to-end latency by 52%",
-        "Maintained 98% quality parity with baseline",
-        "Cut inference costs by 40% through smart routing"
+        "Reduced TTFT by ~1.8× on cloud provider (Together AI): 24s → 13.7s (~43% reduction)",
+        "Reduced TTFT by ~1.8× on local provider (Ollama): 150s → 80s (~47% reduction)",
+        "Improved quality: +13.6pp AlpacaEval 2.0, +0.07 MT-Bench, +3.4pp Arena-Hard"
       ],
       "metrics": {
-        "ttftReduction": "65%",
-        "latencyReduction": "52%",
-        "qualityParity": "98%",
-        "costReduction": "40%"
+        "ttftSpeedup": "1.8×",
+        "ttftCloudBefore": "24s",
+        "ttftCloudAfter": "13.7s",
+        "ttftLocalBefore": "150s",
+        "ttftLocalAfter": "80s",
+        "alpacaEval2Improvement": "+13.6pp",
+        "mtBenchImprovement": "+0.07",
+        "arenaHardImprovement": "+3.4pp"
       },
-      "techStack": ["Python", "PyTorch", "FastAPI", "Redis", "Kubernetes"],
-      "tags": ["LLM", "Multi-Agent", "Optimization", "MLOps"],
-      "featured": true,
-      "date": "2024-06",
-      "status": "Production",
-      "githubUrl": "https://github.com/yourname/moa-optimizer",
-      "demoUrl": "https://demo.yourportfolio.com/moa",
-      "links": [
-        { "label": "Blog Post", "url": "https://yourportfolio.com/blog/moa-optimizer" },
-        { "label": "Paper", "url": "https://arxiv.org/abs/example" }
-      ]
-    },
-    {
-      "slug": "biomedical-ner-webapp",
-      "title": "Biomedical NER Web Application",
-      "shortDescription": "Production NER system for extracting medical entities from clinical text with 0.89 Macro-F1.",
-      "description": "Developed a full-stack web application for biomedical named entity recognition, enabling researchers and clinicians to extract structured information from unstructured clinical notes and research papers.",
-      "problemStatement": "Healthcare organizations struggle to extract structured data from millions of unstructured clinical documents. Manual annotation is expensive and doesn't scale.",
-      "solution": "Fine-tuned BioBERT on custom medical entity dataset combining multiple biomedical corpora. Built intuitive web interface with real-time extraction, entity linking to medical ontologies (UMLS, SNOMED), and batch processing capabilities.",
-      "impact": [
-        "Achieved 0.89 Macro-F1 on held-out test set",
-        "Processed 2M+ clinical documents in production",
-        "Reduced manual annotation time by 75%",
-        "Adopted by 3 healthcare research institutions"
+      "techStack": [
+        "Python",
+        "LLM APIs",
+        "Ollama",
+        "Together AI",
+        "Evaluation: AlpacaEval 2.0 / MT-Bench / Arena-Hard"
       ],
-      "metrics": {
-        "macroF1": "0.89",
-        "documentsProcessed": "2M+",
-        "annotationTimeReduction": "75%",
-        "institutionsAdopted": "3"
-      },
-      "techStack": ["Python", "PyTorch", "HuggingFace", "FastAPI", "React", "PostgreSQL"],
-      "tags": ["NLP", "Healthcare", "NER", "Full-Stack"],
+      "tags": [
+        "LLM",
+        "Multi-Agent",
+        "Systems",
+        "Optimization",
+        "Evaluation"
+      ],
       "featured": true,
-      "date": "2024-03",
-      "status": "Production",
-      "githubUrl": "https://github.com/yourname/biomedical-ner",
-      "demoUrl": "https://demo.yourportfolio.com/ner",
+      "date": "2025-07",
+      "status": "Research / Prototype",
+      "githubUrl": "https://github.com/Nashid-Noor/efficient-mixture-of-agents",
+      "demoUrl": null,
       "links": []
     },
     {
-      "slug": "clip-prompt-tuning",
-      "title": "CLIP Prompt Tuning for Domain Adaptation",
-      "shortDescription": "Novel prompt tuning approach achieving 12% accuracy improvement on specialized image domains.",
-      "description": "Developed a parameter-efficient method for adapting CLIP to specialized image domains without full fine-tuning. The approach learns optimal prompt embeddings that steer the model toward domain-specific visual concepts.",
-      "problemStatement": "CLIP struggles with specialized domains (medical imaging, satellite imagery, industrial inspection) due to distribution shift from web-scale training data. Full fine-tuning is expensive and risks catastrophic forgetting.",
-      "solution": "Implemented context optimization (CoOp) with domain-specific regularization. Added visual prompt tuning (VPT) layer that learns to inject domain knowledge into the vision encoder. Combined with few-shot learning for rapid domain adaptation.",
+      "slug": "prompt-tuning-clip",
+      "title": "Prompt Tuning for Vision–Language Models (CLIP)",
+      "shortDescription": "Prompt tuning framework for CLIP (ViT-B/16) with 94.7% average Top-1 / macro-F1 over five runs; improved EuroSAT from ~46.3% (zero-shot) to 89.96% (ProMetaR).",
+      "description": "Built a prompt-tuning framework on CLIP (ViT-B/16) and implemented multiple prompt learning approaches (CoOp, CoCoOp, MaPLe, ProMetaR, CuPL). Benchmarked across multiple datasets against the CLIP zero-shot baseline using a reproducible multi-run evaluation setup.",
+      "problemStatement": "Zero-shot CLIP can underperform on domain-specific datasets, and full fine-tuning can be costly and harder to reproduce reliably across datasets.",
+      "solution": "Implemented several prompt tuning methods (CoOp, CoCoOp, MaPLe, ProMetaR, CuPL) with reproducible multi-run evaluation. Ran ablations on prompt length, class-specific vs shared prompts, and class-token position. Also implemented a custom CLIP from scratch to study learning behaviour under limited data.",
       "impact": [
-        "12% accuracy improvement on medical imaging benchmark",
-        "8% improvement on satellite imagery classification",
-        "Only 0.1% of parameters trained vs full fine-tuning",
-        "Adapts to new domains with just 16 examples"
+        "94.7% average Top-1 / macro-F1 over five runs (multi-run evaluation)",
+        "EuroSAT: improved from ~46.3% (CLIP zero-shot manual prompts) to 89.96% (ProMetaR)",
+        "Ablation studies quantified effects of prompt length, prompt sharing, and class-token position"
       ],
       "metrics": {
-        "accuracyImprovementMedical": "12%",
-        "accuracyImprovementSatellite": "8%",
-        "parameterEfficiency": "0.1%",
-        "fewShotExamples": "16"
+        "avgTop1OrMacroF1_5runs": "94.7%",
+        "eurosatBaselineZeroShot": "46.3%",
+        "eurosatProMetaR": "89.96%"
       },
-      "techStack": ["Python", "PyTorch", "CLIP", "Weights & Biases", "HuggingFace"],
-      "tags": ["Computer Vision", "CLIP", "Few-Shot Learning", "Research"],
+      "techStack": [
+        "Python",
+        "PyTorch",
+        "CLIP (ViT-B/16)",
+        "Experimentation / Ablations"
+      ],
+      "tags": [
+        "Computer Vision",
+        "CLIP",
+        "Prompt Tuning",
+        "Research"
+      ],
       "featured": true,
-      "date": "2024-01",
+      "date": "2025-05",
       "status": "Research",
-      "githubUrl": "https://github.com/yourname/clip-prompt-tuning",
+      "githubUrl": "https://github.com/Nashid-Noor/Prompt-Tuning-Foundation-Vision-Language-Models-for-Better-Downstream-Performance/",
       "demoUrl": null,
-      "links": [
-        { "label": "Research Paper", "url": "https://arxiv.org/abs/example2" }
-      ]
+      "links": []
     },
     {
-      "slug": "mcp-trading-assistant",
-      "title": "MCP Trading Assistant",
-      "shortDescription": "Modular AI trading assistant built with Model Context Protocol for extensible financial analysis.",
-      "description": "Built a conversational AI assistant for financial analysis using the Model Context Protocol (MCP). The system provides a modular architecture where specialized tools handle different aspects of trading analysis, portfolio management, and market research.",
-      "problemStatement": "Financial analysts need to query multiple data sources, run various analyses, and synthesize information quickly. Existing tools are siloed and don't integrate well with conversational AI interfaces.",
-      "solution": "Designed an MCP server architecture with specialized tools for market data retrieval, technical analysis, fundamental metrics, portfolio optimization, and risk assessment. Built clean TypeScript SDK with strongly-typed tool interfaces and comprehensive error handling.",
+      "slug": "biomedical-ner-webapp",
+      "title": "Biomedical Named Entity Recognition (NER) System",
+      "shortDescription": "Clinician-friendly NER web app for extracting medical entities from clinical text; best RoBERTa model achieved 0.87 macro-F1 on PLOD.",
+      "description": "Built and deployed a biomedical NER web application to extract medical entities from clinical text. The system supports interactive extraction and captures user feedback for continuous improvement, with a focus on span-level evaluation and error analysis.",
+      "problemStatement": "Clinical text is unstructured and hard to search/analyse at scale; entity extraction is a critical step but model errors need tight feedback loops and transparent evaluation.",
+      "solution": "Benchmarked HMM, CRF, BiLSTM, and RoBERTa with varied embeddings (Word2Vec/GloVe/FastText) and optimizers (Adam/AdamW/SGD/RMSprop). Deployed with FastAPI + NGINX and an interactive Tailwind CSS UI. Logged predictions and ratings to CSV to enable retraining and continuous improvement.",
       "impact": [
-        "Modular design enables easy addition of new analysis tools",
-        "Type-safe MCP implementation ensures reliability",
-        "Sub-second response times for real-time queries",
-        "Open-source architecture adopted by 2 fintech startups"
+        "Best model (RoBERTa) achieved 0.87 macro-F1 on the PLOD dataset",
+        "Span-level evaluation + confusion matrices and learning curves used to target errors",
+        "User feedback loop via CSV logging to support iterative improvement"
       ],
       "metrics": {
-        "toolCount": "15+",
-        "responseTime": "<1s",
-        "codebaseType": "TypeScript",
-        "adoptedBy": "2 startups"
+        "macroF1": "0.87",
+        "dataset": "PLOD",
+        "modelsBenchmarked": "HMM, CRF, BiLSTM, RoBERTa"
       },
-      "techStack": ["TypeScript", "MCP SDK", "Node.js", "PostgreSQL", "Redis"],
-      "tags": ["MCP", "TypeScript", "Finance", "AI Tools"],
+      "techStack": [
+        "Python",
+        "PyTorch",
+        "RoBERTa",
+        "FastAPI",
+        "NGINX",
+        "Tailwind CSS"
+      ],
+      "tags": [
+        "NLP",
+        "NER",
+        "Healthcare",
+        "Full-Stack"
+      ],
+      "featured": true,
+      "date": "2025-04",
+      "status": "Deployed (Project)",
+      "githubUrl": "https://github.com/Nashid-Noor/token-classifier",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "zerodha-mcp-trading-server",
+      "title": "LLM-Driven Trading Assistant (MCP + Zerodha Kite API)",
+      "shortDescription": "Type-safe MCP server integrating Zerodha KiteConnect via OAuth2 with tools for orders, holdings, and positions.",
+      "description": "Built a Model Context Protocol (MCP) server in TypeScript that integrates Zerodha’s KiteConnect broker API using an OAuth2 authentication flow. Designed for modular extension into larger AI-driven trading systems.",
+      "problemStatement": "Broker workflows (orders, holdings, positions) are typically split across dashboards and scripts, and integrating them into tool-using AI assistants needs a robust, type-safe tool interface and reliable token handling.",
+      "solution": "Implemented OAuth2 auth with a local callback server to handle token management. Added MCP tools for placing buy/sell orders, checking holdings, and tracking positions. Structured the codebase for modularity and strong type safety.",
+      "impact": [
+        "OAuth2-based KiteConnect integration with local callback server for token management",
+        "MCP tools for: buy/sell orders, portfolio holdings, and positions",
+        "Modular, type-safe design to extend for future AI trading use-cases"
+      ],
+      "metrics": {
+        "language": "TypeScript",
+        "auth": "OAuth2",
+        "capabilities": "orders, holdings, positions"
+      },
+      "techStack": [
+        "TypeScript",
+        "Node.js",
+        "MCP",
+        "OAuth2",
+        "Zerodha KiteConnect API"
+      ],
+      "tags": [
+        "MCP",
+        "Finance",
+        "Tooling",
+        "TypeScript"
+      ],
       "featured": false,
-      "date": "2024-08",
-      "status": "Production",
-      "githubUrl": "https://github.com/yourname/mcp-trading-assistant",
+      "date": "2025-06",
+      "status": "Prototype",
+      "githubUrl": "https://github.com/Nashid-Noor/Zerodha-Trading-Server",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "financial-doc-intelligence-rag",
+      "title": "Financial Document Intelligence Platform (RAG)",
+      "shortDescription": "Source-cited financial Q&A over reports using hybrid retrieval (Qdrant + BM25) and a fine-tuned LLaMA 3.1 (8B).",
+      "description": "Built a retrieval-augmented generation (RAG) system to answer complex financial questions over documents with source-cited responses. Combined dense retrieval and lexical retrieval, used table-aware chunking, and deployed the system with a clean API and UI.",
+      "problemStatement": "Financial reports contain dense narrative + tables; standard RAG pipelines often miss tabular context or fail to ground answers reliably.",
+      "solution": "Implemented hybrid retrieval (Qdrant with bge-large-en-v1.5 embeddings + BM25). Added table-aware chunking for better table recall. Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA to improve financial reasoning and numerical QA. Deployed via FastAPI and Streamlit.",
+      "impact": [
+        "Hybrid retrieval (Qdrant + BM25) to improve coverage across narrative and tables",
+        "Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA for numerical financial QA",
+        "Source-cited responses for better trust and traceability"
+      ],
+      "metrics": {
+        "llm": "LLaMA 3.1 (8B)",
+        "retrieval": "Hybrid (Qdrant + BM25)",
+        "embeddingModel": "bge-large-en-v1.5",
+        "finetuneDatasets": "FinQA, TAT-QA"
+      },
+      "techStack": [
+        "Python",
+        "FastAPI",
+        "Streamlit",
+        "Qdrant",
+        "BM25",
+        "LLaMA 3.1",
+        "bge-large-en-v1.5"
+      ],
+      "tags": [
+        "RAG",
+        "LLMs",
+        "Finance",
+        "Information Retrieval"
+      ],
+      "featured": true,
+      "date": "2025-08",
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/financial-doc-intelligence",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "sentiment-analysis-mlops-pipeline",
+      "title": "MLOps Pipeline for Sentiment Analysis",
+      "shortDescription": "Reproducible sentiment analysis pipeline with DVC + MLflow, Dockerized deployment, and data ingestion from SQL Server and AWS S3.",
+      "description": "Built a reproducible end-to-end MLOps pipeline for sentiment analysis, covering ingestion, preprocessing, versioning, experiment tracking, and containerized deployment.",
+      "problemStatement": "Model experiments and datasets drift quickly without reproducible workflows; teams need consistent versioning and experiment tracking across training and deployment.",
+      "solution": "Implemented ingestion from SQL Server and AWS S3, ETL preprocessing, dataset versioning with DVC, experiment tracking with MLflow, and containerized deployment using Docker with a Flask service interface.",
+      "impact": [
+        "End-to-end reproducible training workflow via DVC + MLflow",
+        "Containerized deployment using Docker + Flask",
+        "Integrated ingestion from SQL Server and AWS S3 for flexible data sources"
+      ],
+      "metrics": {
+        "dataVersioning": "DVC",
+        "experimentTracking": "MLflow",
+        "deployment": "Docker + Flask",
+        "sources": "SQL Server, AWS S3"
+      },
+      "techStack": [
+        "Python",
+        "DVC",
+        "MLflow",
+        "Docker",
+        "Flask",
+        "AWS S3",
+        "SQL Server"
+      ],
+      "tags": [
+        "MLOps",
+        "NLP",
+        "Reproducibility",
+        "Deployment"
+      ],
+      "featured": false,
+      "date": "2025-03",
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/Sentiment-Analysis-MLOps-Pipeline",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "stock-market-real-time-data-pipeline",
+      "title": "Real-Time Stock Market Data Pipeline",
+      "shortDescription": "Kafka-based streaming pipeline for live stock data with Avro schemas, ksqlDB windowed aggregations, and S3 sink via Kafka Connect.",
+      "description": "Built a real-time pipeline ingesting live stock market data from Yahoo Finance into Kafka, enforcing schema governance with Avro + Confluent Schema Registry, performing streaming analytics with ksqlDB, and persisting to S3 using Kafka Connect.",
+      "problemStatement": "Live market feeds require reliable ingestion, schema evolution handling, and streaming analytics to detect movement and aggregate signals in real time.",
+      "solution": "Ingested live market data (yfinance) into Kafka with Avro serialization and schema versioning (Schema Registry). Implemented ksqlDB stream processing for windowed aggregations and price movement detection. Persisted data using Kafka Connect S3 sink. Containerized with Docker Compose.",
+      "impact": [
+        "Avro + Schema Registry enabled schema versioning for streaming data",
+        "ksqlDB implemented for windowed aggregations and movement detection",
+        "Kafka Connect S3 sink configured for persistence; fully containerized"
+      ],
+      "metrics": {
+        "serialization": "Avro",
+        "schemaGovernance": "Confluent Schema Registry",
+        "streamProcessing": "ksqlDB",
+        "sink": "Kafka Connect S3",
+        "containerization": "Docker Compose"
+      },
+      "techStack": [
+        "Kafka",
+        "ksqlDB",
+        "Schema Registry",
+        "Kafka Connect",
+        "Docker Compose",
+        "Python",
+        "yfinance"
+      ],
+      "tags": [
+        "Data Engineering",
+        "Streaming",
+        "Kafka",
+        "Real-Time Analytics"
+      ],
+      "featured": false,
+      "date": "2025-02",
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/stock-market-real-time-data-engineering",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "shelfsense-ai",
+      "title": "ShelfSense AI (Digital Library Assistant)",
+      "shortDescription": "YOLOv8-based bookshelf digitization + RAG assistant to search your physical library from a single photo.",
+      "description": "Built a computer vision pipeline to detect books from a bookshelf image and a RAG system to let users query their library with context-aware responses.",
+      "problemStatement": "People with large physical libraries can’t easily search, track, or explore their collection without manual cataloging.",
+      "solution": "Trained/implemented YOLOv8 detection for bookshelf images, merged detections robustly for complex layouts, and built a FAISS-based RAG layer using Gemini for contextual Q&A over recognized titles.",
+      "impact": [
+        "Achieved 89% detection accuracy on bookshelf images (including complex layouts)",
+        "Reduced end-to-end response latency to < 1.2s via AsyncIO concurrency and efficient merging"
+      ],
+      "metrics": {
+        "detectionAccuracy": "89%",
+        "latency": "<1.2s"
+      },
+      "techStack": [
+        "YOLOv8",
+        "PyTorch",
+        "FastAPI",
+        "FAISS",
+        "Docker",
+        "Gemini",
+        "AsyncIO"
+      ],
+      "tags": [
+        "Computer Vision",
+        "RAG",
+        "Full-Stack",
+        "LLM"
+      ],
+      "featured": true,
+      "date": "2025-XX",
+      "status": "Project",
+      "githubUrl": null,
+      "demoUrl": "https://huggingface.co/spaces/nashid16/shelf-sense",
+      "links": []
+    },
+    {
+      "slug": "autonomous-blog-writing-agent",
+      "title": "Autonomous Blog Research & Writing Agent",
+      "shortDescription": "LangGraph multi-agent research + writing workflow using live web retrieval with schema-validated tool outputs.",
+      "description": "Engineered a multi-agent state machine that researches a topic via live search, synthesizes evidence, and generates a blog draft with structured intermediate steps.",
+      "problemStatement": "High-quality content creation is slow because research, evidence gathering, and outlining are manual and fragmented.",
+      "solution": "Built a LangGraph multi-agent workflow with a real-time research loop using Tavily API and enforced strict structured outputs via Pydantic JSON schemas to reduce format errors and improve reliability.",
+      "impact": [
+        "Reduced content creation time by 90% while maintaining factual grounding via live evidence collection",
+        "Eliminated common formatting failures by enforcing strict JSON schemas with Pydantic"
+      ],
+      "metrics": {
+        "timeReduction": "90%"
+      },
+      "techStack": [
+        "LangGraph",
+        "Tavily API",
+        "Streamlit",
+        "Pydantic"
+      ],
+      "tags": [
+        "Agents",
+        "LLM",
+        "Automation",
+        "Research"
+      ],
+      "featured": true,
+      "date": "2025-XX",
+      "status": "Deployed (Project)",
+      "githubUrl": null,
+      "demoUrl": "https://blog-writing-agent-gtzy5opgxtwumwgqkredfk.streamlit.app/#blog-writing-agent",
+      "links": []
+    },
+    {
+      "slug": "document-intelligence-platform",
+      "title": "Document Intelligence Platform (Hybrid Retrieval QA System)",
+      "shortDescription": "Hybrid retrieval QA system combining dense vectors (Qdrant) + BM25 for source-grounded answers over unstructured reports.",
+      "description": "Built a hybrid retrieval system to answer complex questions over PDFs using dense retrieval with Qdrant and lexical ranking with BM25, producing source-grounded responses through a low-latency FastAPI inference layer.",
+      "problemStatement": "Searching and extracting answers from long unstructured PDF reports is slow and error-prone, especially when lexical-only or vector-only retrieval misses key context.",
+      "solution": "Implemented parsing + embedding pipelines for PDFs, hybrid retrieval (Qdrant + BM25), and deployed a low-latency FastAPI + Streamlit interface for grounded Q&A.",
+      "impact": [
+        "Improved retrieval coverage using hybrid dense + lexical retrieval",
+        "Delivered real-time, source-grounded responses via FastAPI deployment"
+      ],
+      "metrics": {
+        "retrieval": "Hybrid (Qdrant + BM25)"
+      },
+      "techStack": [
+        "LLaMA 3.1",
+        "Qdrant",
+        "BM25",
+        "FastAPI",
+        "Streamlit"
+      ],
+      "tags": [
+        "RAG",
+        "Information Retrieval",
+        "LLM",
+        "Backend"
+      ],
+      "featured": true,
+      "date": "2025-XX",
+      "status": "Deployed (Project)",
+      "githubUrl": null,
+      "demoUrl": "https://document-intelligence-4wr3.onrender.com",
+      "links": []
+    },
+    {
+      "slug": "deep-learning-from-scratch",
+      "title": "Deep Learning Architecture Implementations (From First Principles)",
+      "shortDescription": "Implemented BERT, ViT, CLIP, ResNet from scratch in PyTorch and built a custom LoRA module for PEFT study.",
+      "description": "Implemented core deep learning architectures from first principles to understand attention, residual design, training dynamics, and parameter-efficient fine-tuning.",
+      "problemStatement": "Using libraries is fast, but deep understanding (and debugging ability) improves dramatically when you build the core components yourself.",
+      "solution": "Rebuilt transformer blocks, vision backbones, and CLIP-style training components in PyTorch. Implemented LoRA by injecting low-rank adapters into transformer layers to study PEFT behaviour.",
+      "impact": [
+        "Built reusable educational implementations of key architectures (BERT, ViT, CLIP, ResNet)",
+        "Custom LoRA module enabled hands-on PEFT experimentation"
+      ],
+      "metrics": {
+        "architecturesImplemented": [
+          "BERT",
+          "Vision Transformer",
+          "CLIP",
+          "ResNet"
+        ],
+        "peft": "Custom LoRA"
+      },
+      "techStack": [
+        "PyTorch",
+        "Transformers",
+        "CNNs",
+        "LoRA"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Research Engineering",
+        "PyTorch"
+      ],
+      "featured": false,
+      "date": "2025-XX",
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/Implemented-research-papers-from-scratch",
       "demoUrl": null,
       "links": []
     }
