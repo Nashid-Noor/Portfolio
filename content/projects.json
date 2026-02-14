@@ -37,7 +37,6 @@
         "Evaluation"
       ],
       "featured": true,
-      "date": "2025-07",
       "status": "Research / Prototype",
       "githubUrl": "https://github.com/Nashid-Noor/efficient-mixture-of-agents",
       "demoUrl": null,
@@ -73,7 +72,6 @@
         "Research"
       ],
       "featured": true,
-      "date": "2025-05",
       "status": "Research",
       "githubUrl": "https://github.com/Nashid-Noor/Prompt-Tuning-Foundation-Vision-Language-Models-for-Better-Downstream-Performance/",
       "demoUrl": null,
@@ -111,7 +109,6 @@
         "Full-Stack"
       ],
       "featured": true,
-      "date": "2025-04",
       "status": "Deployed (Project)",
       "githubUrl": "https://github.com/Nashid-Noor/token-classifier",
       "demoUrl": null,
@@ -148,7 +145,6 @@
         "TypeScript"
       ],
       "featured": false,
-      "date": "2025-06",
       "status": "Prototype",
       "githubUrl": "https://github.com/Nashid-Noor/Zerodha-Trading-Server",
       "demoUrl": null,
@@ -156,7 +152,7 @@
     },
     {
       "slug": "financial-doc-intelligence-rag",
-      "title": "Financial Document Intelligence Platform (RAG)",
+      "title": "Document Intelligence Platform",
       "shortDescription": "Source-cited financial Q&A over reports using hybrid retrieval (Qdrant + BM25) and a fine-tuned LLaMA 3.1 (8B).",
       "description": "Built a retrieval-augmented generation (RAG) system to answer complex financial questions over documents with source-cited responses. Combined dense retrieval and lexical retrieval, used table-aware chunking, and deployed the system with a clean API and UI.",
       "problemStatement": "Financial reports contain dense narrative + tables; standard RAG pipelines often miss tabular context or fail to ground answers reliably.",
@@ -188,10 +184,9 @@
         "Information Retrieval"
       ],
       "featured": true,
-      "date": "2025-08",
       "status": "Project",
       "githubUrl": "https://github.com/Nashid-Noor/financial-doc-intelligence",
-      "demoUrl": null,
+      "demoUrl": "https://document-intelligence-4wr3.onrender.com",
       "links": []
     },
     {
@@ -228,7 +223,6 @@
         "Deployment"
       ],
       "featured": false,
-      "date": "2025-03",
       "status": "Project",
       "githubUrl": "https://github.com/Nashid-Noor/Sentiment-Analysis-MLOps-Pipeline",
       "demoUrl": null,
@@ -269,7 +263,6 @@
         "Real-Time Analytics"
       ],
       "featured": false,
-      "date": "2025-02",
       "status": "Project",
       "githubUrl": "https://github.com/Nashid-Noor/stock-market-real-time-data-engineering",
       "demoUrl": null,
@@ -306,7 +299,6 @@
         "LLM"
       ],
       "featured": true,
-      "date": "2025-XX",
       "status": "Project",
       "githubUrl": null,
       "demoUrl": "https://huggingface.co/spaces/nashid16/shelf-sense",
@@ -339,44 +331,9 @@
         "Research"
       ],
       "featured": true,
-      "date": "2025-XX",
       "status": "Deployed (Project)",
       "githubUrl": null,
       "demoUrl": "https://blog-writing-agent-gtzy5opgxtwumwgqkredfk.streamlit.app/#blog-writing-agent",
-      "links": []
-    },
-    {
-      "slug": "document-intelligence-platform",
-      "title": "Document Intelligence Platform (Hybrid Retrieval QA System)",
-      "shortDescription": "Hybrid retrieval QA system combining dense vectors (Qdrant) + BM25 for source-grounded answers over unstructured reports.",
-      "description": "Built a hybrid retrieval system to answer complex questions over PDFs using dense retrieval with Qdrant and lexical ranking with BM25, producing source-grounded responses through a low-latency FastAPI inference layer.",
-      "problemStatement": "Searching and extracting answers from long unstructured PDF reports is slow and error-prone, especially when lexical-only or vector-only retrieval misses key context.",
-      "solution": "Implemented parsing + embedding pipelines for PDFs, hybrid retrieval (Qdrant + BM25), and deployed a low-latency FastAPI + Streamlit interface for grounded Q&A.",
-      "impact": [
-        "Improved retrieval coverage using hybrid dense + lexical retrieval",
-        "Delivered real-time, source-grounded responses via FastAPI deployment"
-      ],
-      "metrics": {
-        "retrieval": "Hybrid (Qdrant + BM25)"
-      },
-      "techStack": [
-        "LLaMA 3.1",
-        "Qdrant",
-        "BM25",
-        "FastAPI",
-        "Streamlit"
-      ],
-      "tags": [
-        "RAG",
-        "Information Retrieval",
-        "LLM",
-        "Backend"
-      ],
-      "featured": true,
-      "date": "2025-XX",
-      "status": "Deployed (Project)",
-      "githubUrl": null,
-      "demoUrl": "https://document-intelligence-4wr3.onrender.com",
       "links": []
     },
     {
@@ -411,7 +368,6 @@
         "PyTorch"
       ],
       "featured": false,
-      "date": "2025-XX",
       "status": "Project",
       "githubUrl": "https://github.com/Nashid-Noor/Implemented-research-papers-from-scratch",
       "demoUrl": null,

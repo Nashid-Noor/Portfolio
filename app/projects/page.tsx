@@ -45,16 +45,16 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
   // Sort projects
   if (sort === "recent") {
-    filteredProjects = [...filteredProjects].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
-  } else {
-    // Impact: featured first, then by date
-    filteredProjects = [...filteredProjects].sort((a, b) => {
-      if (a.featured !== b.featured) return b.featured ? 1 : -1;
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
+    // Fallback for recent sort: just keep original order but maybe ensure consistent output or just no-op since date is gone
+    // We'll just rely on the default sort which is featured first
+    filteredProjects = [...filteredProjects];
   }
+
+  // Default Sort: Featured first, then by original order in JSON
+  filteredProjects.sort((a, b) => {
+    if (a.featured !== b.featured) return b.featured ? 1 : -1;
+    return 0; // Maintain original order
+  });
 
   return (
     <div className="min-h-screen py-8 md:py-12">
