@@ -63,7 +63,7 @@ export interface Project {
   techStack: string[];
   tags: string[];
   featured: boolean;
-  date: string;
+
   status: string;
   githubUrl: string | null;
   demoUrl: string | null;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
 import { Project } from "@/lib/content";
-import { cn, formatDate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;
@@ -30,9 +30,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             <Link href={`/projects/${project.slug}`}>{project.title}</Link>
           </h3>
         </div>
-        <span className="text-xs text-muted-foreground whitespace-nowrap">
-          {formatDate(project.date)}
-        </span>
+
       </div>
 
       {/* Description */}

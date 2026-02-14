@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, Github, Calendar, Tag } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Tag } from "lucide-react";
 import { getProjectBySlug, getProjectsContent } from "@/lib/content";
-import { formatDate } from "@/lib/utils";
 import { SkillBadge } from "@/components/skill-badge";
 
 interface PageProps {
@@ -51,10 +50,7 @@ export default async function ProjectPage({ params }: PageProps) {
           <header className="mb-12">
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="badge badge-accent">{project.status}</span>
-              <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                <Calendar className="w-4 h-4" />
-                {formatDate(project.date)}
-              </span>
+
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold font-display mb-4">
