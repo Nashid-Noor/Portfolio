@@ -50,11 +50,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
     filteredProjects = [...filteredProjects];
   }
 
-  // Default Sort: Featured first, then by original order in JSON
-  filteredProjects.sort((a, b) => {
-    if (a.featured !== b.featured) return b.featured ? 1 : -1;
-    return 0; // Maintain original order
-  });
+  // Default Sort: Original order in JSON which allows manual ordering
+  // We removed the featured sort logic to respect the JSON order strictly.
+  // filteredProjects.sort((a, b) => 0); // No-op, already in order
 
   return (
     <div className="min-h-screen py-8 md:py-12">

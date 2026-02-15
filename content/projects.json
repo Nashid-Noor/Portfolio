@@ -1,6 +1,79 @@
 {
   "projects": [
     {
+      "slug": "deep-learning-from-scratch",
+      "title": "Deep Learning Architecture Implementations (From First Principles)",
+      "shortDescription": "Implemented BERT, ViT, CLIP, ResNet from scratch in PyTorch and built a custom LoRA module for PEFT study.",
+      "description": "Implemented core deep learning architectures from first principles to understand attention, residual design, training dynamics, and parameter-efficient fine-tuning.",
+      "problemStatement": "Using libraries is fast, but deep understanding (and debugging ability) improves dramatically when you build the core components yourself.",
+      "solution": "Rebuilt transformer blocks, vision backbones, and CLIP-style training components in PyTorch. Implemented LoRA by injecting low-rank adapters into transformer layers to study PEFT behaviour.",
+      "impact": [
+        "Built reusable educational implementations of key architectures (BERT, ViT, CLIP, ResNet)",
+        "Custom LoRA module enabled hands-on PEFT experimentation"
+      ],
+      "metrics": {
+        "architecturesImplemented": [
+          "BERT",
+          "Vision Transformer",
+          "CLIP",
+          "ResNet"
+        ],
+        "peft": "Custom LoRA"
+      },
+      "techStack": [
+        "PyTorch",
+        "Transformers",
+        "CNNs",
+        "LoRA"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Research Engineering",
+        "PyTorch"
+      ],
+      "featured": false,
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/Implemented-research-papers-from-scratch",
+      "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "shelfsense-ai",
+      "title": "ShelfSense AI (Digital Library Assistant)",
+      "shortDescription": "YOLOv8-based bookshelf digitization + RAG assistant to search your physical library from a single photo.",
+      "description": "Built a computer vision pipeline to detect books from a bookshelf image and a RAG system to let users query their library with context-aware responses.",
+      "problemStatement": "People with large physical libraries can’t easily search, track, or explore their collection without manual cataloging.",
+      "solution": "Trained/implemented YOLOv8 detection for bookshelf images, merged detections robustly for complex layouts, and built a FAISS-based RAG layer using Gemini for contextual Q&A over recognized titles.",
+      "impact": [
+        "Achieved 89% detection accuracy on bookshelf images (including complex layouts)",
+        "Reduced end-to-end response latency to < 1.2s via AsyncIO concurrency and efficient merging"
+      ],
+      "metrics": {
+        "detectionAccuracy": "89%",
+        "latency": "<1.2s"
+      },
+      "techStack": [
+        "YOLOv8",
+        "PyTorch",
+        "FastAPI",
+        "FAISS",
+        "Docker",
+        "Gemini",
+        "AsyncIO"
+      ],
+      "tags": [
+        "Computer Vision",
+        "RAG",
+        "Full-Stack",
+        "LLM"
+      ],
+      "featured": true,
+      "status": "Project",
+      "githubUrl": null,
+      "demoUrl": "https://huggingface.co/spaces/nashid16/shelf-sense",
+      "links": []
+    },
+    {
       "slug": "efficient-mixture-of-agents",
       "title": "Efficient Mixture of Agents (MoA)",
       "shortDescription": "Multi-layer MoA framework that reduced LLM Time-to-First-Token (TTFT) by ~1.8× while improving quality on AlpacaEval 2.0, MT-Bench, and Arena-Hard.",
@@ -43,6 +116,45 @@
       "links": []
     },
     {
+      "slug": "financial-doc-intelligence-rag",
+      "title": "Document Intelligence Platform",
+      "shortDescription": "Source-cited financial Q&A over reports using hybrid retrieval (Qdrant + BM25) and a fine-tuned LLaMA 3.1 (8B).",
+      "description": "Built a retrieval-augmented generation (RAG) system to answer complex financial questions over documents with source-cited responses. Combined dense retrieval and lexical retrieval, used table-aware chunking, and deployed the system with a clean API and UI.",
+      "problemStatement": "Financial reports contain dense narrative + tables; standard RAG pipelines often miss tabular context or fail to ground answers reliably.",
+      "solution": "Implemented hybrid retrieval (Qdrant with bge-large-en-v1.5 embeddings + BM25). Added table-aware chunking for better table recall. Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA to improve financial reasoning and numerical QA. Deployed via FastAPI and Streamlit.",
+      "impact": [
+        "Hybrid retrieval (Qdrant + BM25) to improve coverage across narrative and tables",
+        "Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA for numerical financial QA",
+        "Source-cited responses for better trust and traceability"
+      ],
+      "metrics": {
+        "llm": "LLaMA 3.1 (8B)",
+        "retrieval": "Hybrid (Qdrant + BM25)",
+        "embeddingModel": "bge-large-en-v1.5",
+        "finetuneDatasets": "FinQA, TAT-QA"
+      },
+      "techStack": [
+        "Python",
+        "FastAPI",
+        "Streamlit",
+        "Qdrant",
+        "BM25",
+        "LLaMA 3.1",
+        "bge-large-en-v1.5"
+      ],
+      "tags": [
+        "RAG",
+        "LLMs",
+        "Finance",
+        "Information Retrieval"
+      ],
+      "featured": true,
+      "status": "Project",
+      "githubUrl": "https://github.com/Nashid-Noor/financial-doc-intelligence",
+      "demoUrl": "https://document-intelligence-4wr3.onrender.com",
+      "links": []
+    },
+    {
       "slug": "prompt-tuning-clip",
       "title": "Prompt Tuning for Vision–Language Models (CLIP)",
       "shortDescription": "Prompt tuning framework for CLIP (ViT-B/16) with 94.7% average Top-1 / macro-F1 over five runs; improved EuroSAT from ~46.3% (zero-shot) to 89.96% (ProMetaR).",
@@ -75,6 +187,38 @@
       "status": "Research",
       "githubUrl": "https://github.com/Nashid-Noor/Prompt-Tuning-Foundation-Vision-Language-Models-for-Better-Downstream-Performance/",
       "demoUrl": null,
+      "links": []
+    },
+    {
+      "slug": "autonomous-blog-writing-agent",
+      "title": "Autonomous Blog Research & Writing Agent",
+      "shortDescription": "LangGraph multi-agent research + writing workflow using live web retrieval with schema-validated tool outputs.",
+      "description": "Engineered a multi-agent state machine that researches a topic via live search, synthesizes evidence, and generates a blog draft with structured intermediate steps.",
+      "problemStatement": "High-quality content creation is slow because research, evidence gathering, and outlining are manual and fragmented.",
+      "solution": "Built a LangGraph multi-agent workflow with a real-time research loop using Tavily API and enforced strict structured outputs via Pydantic JSON schemas to reduce format errors and improve reliability.",
+      "impact": [
+        "Reduced content creation time by 90% while maintaining factual grounding via live evidence collection",
+        "Eliminated common formatting failures by enforcing strict JSON schemas with Pydantic"
+      ],
+      "metrics": {
+        "timeReduction": "90%"
+      },
+      "techStack": [
+        "LangGraph",
+        "Tavily API",
+        "Streamlit",
+        "Pydantic"
+      ],
+      "tags": [
+        "Agents",
+        "LLM",
+        "Automation",
+        "Research"
+      ],
+      "featured": true,
+      "status": "Deployed (Project)",
+      "githubUrl": null,
+      "demoUrl": "https://blog-writing-agent-gtzy5opgxtwumwgqkredfk.streamlit.app/#blog-writing-agent",
       "links": []
     },
     {
@@ -148,45 +292,6 @@
       "status": "Prototype",
       "githubUrl": "https://github.com/Nashid-Noor/Zerodha-Trading-Server",
       "demoUrl": null,
-      "links": []
-    },
-    {
-      "slug": "financial-doc-intelligence-rag",
-      "title": "Document Intelligence Platform",
-      "shortDescription": "Source-cited financial Q&A over reports using hybrid retrieval (Qdrant + BM25) and a fine-tuned LLaMA 3.1 (8B).",
-      "description": "Built a retrieval-augmented generation (RAG) system to answer complex financial questions over documents with source-cited responses. Combined dense retrieval and lexical retrieval, used table-aware chunking, and deployed the system with a clean API and UI.",
-      "problemStatement": "Financial reports contain dense narrative + tables; standard RAG pipelines often miss tabular context or fail to ground answers reliably.",
-      "solution": "Implemented hybrid retrieval (Qdrant with bge-large-en-v1.5 embeddings + BM25). Added table-aware chunking for better table recall. Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA to improve financial reasoning and numerical QA. Deployed via FastAPI and Streamlit.",
-      "impact": [
-        "Hybrid retrieval (Qdrant + BM25) to improve coverage across narrative and tables",
-        "Fine-tuned LLaMA 3.1 (8B) on FinQA and TAT-QA for numerical financial QA",
-        "Source-cited responses for better trust and traceability"
-      ],
-      "metrics": {
-        "llm": "LLaMA 3.1 (8B)",
-        "retrieval": "Hybrid (Qdrant + BM25)",
-        "embeddingModel": "bge-large-en-v1.5",
-        "finetuneDatasets": "FinQA, TAT-QA"
-      },
-      "techStack": [
-        "Python",
-        "FastAPI",
-        "Streamlit",
-        "Qdrant",
-        "BM25",
-        "LLaMA 3.1",
-        "bge-large-en-v1.5"
-      ],
-      "tags": [
-        "RAG",
-        "LLMs",
-        "Finance",
-        "Information Retrieval"
-      ],
-      "featured": true,
-      "status": "Project",
-      "githubUrl": "https://github.com/Nashid-Noor/financial-doc-intelligence",
-      "demoUrl": "https://document-intelligence-4wr3.onrender.com",
       "links": []
     },
     {
@@ -265,111 +370,6 @@
       "featured": false,
       "status": "Project",
       "githubUrl": "https://github.com/Nashid-Noor/stock-market-real-time-data-engineering",
-      "demoUrl": null,
-      "links": []
-    },
-    {
-      "slug": "shelfsense-ai",
-      "title": "ShelfSense AI (Digital Library Assistant)",
-      "shortDescription": "YOLOv8-based bookshelf digitization + RAG assistant to search your physical library from a single photo.",
-      "description": "Built a computer vision pipeline to detect books from a bookshelf image and a RAG system to let users query their library with context-aware responses.",
-      "problemStatement": "People with large physical libraries can’t easily search, track, or explore their collection without manual cataloging.",
-      "solution": "Trained/implemented YOLOv8 detection for bookshelf images, merged detections robustly for complex layouts, and built a FAISS-based RAG layer using Gemini for contextual Q&A over recognized titles.",
-      "impact": [
-        "Achieved 89% detection accuracy on bookshelf images (including complex layouts)",
-        "Reduced end-to-end response latency to < 1.2s via AsyncIO concurrency and efficient merging"
-      ],
-      "metrics": {
-        "detectionAccuracy": "89%",
-        "latency": "<1.2s"
-      },
-      "techStack": [
-        "YOLOv8",
-        "PyTorch",
-        "FastAPI",
-        "FAISS",
-        "Docker",
-        "Gemini",
-        "AsyncIO"
-      ],
-      "tags": [
-        "Computer Vision",
-        "RAG",
-        "Full-Stack",
-        "LLM"
-      ],
-      "featured": true,
-      "status": "Project",
-      "githubUrl": null,
-      "demoUrl": "https://huggingface.co/spaces/nashid16/shelf-sense",
-      "links": []
-    },
-    {
-      "slug": "autonomous-blog-writing-agent",
-      "title": "Autonomous Blog Research & Writing Agent",
-      "shortDescription": "LangGraph multi-agent research + writing workflow using live web retrieval with schema-validated tool outputs.",
-      "description": "Engineered a multi-agent state machine that researches a topic via live search, synthesizes evidence, and generates a blog draft with structured intermediate steps.",
-      "problemStatement": "High-quality content creation is slow because research, evidence gathering, and outlining are manual and fragmented.",
-      "solution": "Built a LangGraph multi-agent workflow with a real-time research loop using Tavily API and enforced strict structured outputs via Pydantic JSON schemas to reduce format errors and improve reliability.",
-      "impact": [
-        "Reduced content creation time by 90% while maintaining factual grounding via live evidence collection",
-        "Eliminated common formatting failures by enforcing strict JSON schemas with Pydantic"
-      ],
-      "metrics": {
-        "timeReduction": "90%"
-      },
-      "techStack": [
-        "LangGraph",
-        "Tavily API",
-        "Streamlit",
-        "Pydantic"
-      ],
-      "tags": [
-        "Agents",
-        "LLM",
-        "Automation",
-        "Research"
-      ],
-      "featured": true,
-      "status": "Deployed (Project)",
-      "githubUrl": null,
-      "demoUrl": "https://blog-writing-agent-gtzy5opgxtwumwgqkredfk.streamlit.app/#blog-writing-agent",
-      "links": []
-    },
-    {
-      "slug": "deep-learning-from-scratch",
-      "title": "Deep Learning Architecture Implementations (From First Principles)",
-      "shortDescription": "Implemented BERT, ViT, CLIP, ResNet from scratch in PyTorch and built a custom LoRA module for PEFT study.",
-      "description": "Implemented core deep learning architectures from first principles to understand attention, residual design, training dynamics, and parameter-efficient fine-tuning.",
-      "problemStatement": "Using libraries is fast, but deep understanding (and debugging ability) improves dramatically when you build the core components yourself.",
-      "solution": "Rebuilt transformer blocks, vision backbones, and CLIP-style training components in PyTorch. Implemented LoRA by injecting low-rank adapters into transformer layers to study PEFT behaviour.",
-      "impact": [
-        "Built reusable educational implementations of key architectures (BERT, ViT, CLIP, ResNet)",
-        "Custom LoRA module enabled hands-on PEFT experimentation"
-      ],
-      "metrics": {
-        "architecturesImplemented": [
-          "BERT",
-          "Vision Transformer",
-          "CLIP",
-          "ResNet"
-        ],
-        "peft": "Custom LoRA"
-      },
-      "techStack": [
-        "PyTorch",
-        "Transformers",
-        "CNNs",
-        "LoRA"
-      ],
-      "tags": [
-        "Deep Learning",
-        "Research Engineering",
-        "PyTorch"
-      ],
-      "featured": false,
-      "status": "Project",
-      "githubUrl": "https://github.com/Nashid-Noor/Implemented-research-papers-from-scratch",
       "demoUrl": null,
       "links": []
     }
