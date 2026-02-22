@@ -109,7 +109,7 @@
       "featured": true,
       "status": "Deployed (Project)",
       "githubUrl": "https://github.com/Nashid-Noor/grid-risk-platform",
-      "demoUrl": "https://huggingface.co/spaces/nashid16/grid-risk-platform",
+      "demoUrl": "https://huggingface.co/spaces/nashid16/grid-risk-platform?logs=container",
       "links": []
     },
     {
