@@ -1,6 +1,80 @@
 {
   "projects": [
     {
+      "slug": "avian-influenza-forecast",
+      "title": "Avian Influenza Outbreak Forecasting & Risk Intelligence",
+      "shortDescription": "End-to-end ML pipeline and interactive dashboard to forecast weekly Avian Influenza outbreaks with walk-forward validation (Global MAE 0.21).",
+      "description": "Engineered an end-to-end Machine Learning pipeline and interactive risk dashboard designed to forecast weekly Avian Influenza outbreaks globally. Aggregates raw epidemiological event records, engineers time-series features, and utilizes a boosted tree regression model to serve a 4-week look-ahead forecast alongside a dynamic risk-level classification.",
+      "problemStatement": "Disease outbreaks like Avian Influenza significantly impact global agriculture and trade. Accurately forecasting outbreaks requires complex time-series modelling to capture shifting biological trends and seasonality.",
+      "solution": "Built a time-series forecasting pipeline using LightGBM. Engineered lag features, rolling windows, and seasonality encoding. Validated using strict walk-forward backtesting to prevent data leakage. Deployed an interactive Streamlit dashboard indicating 4-week forecasts and risk tier classification.",
+      "impact": [
+        "Evaluated across 11,600+ records using walk-forward validation",
+        "Achieved a Global MAE of 0.21, outperforming rolling-mean baselines",
+        "Streamlit dashboard dynamically flags countries as High/Medium/Low risk"
+      ],
+      "metrics": {
+        "globalMae": "0.21",
+        "dataPoints": "11,600+",
+        "validationStrategy": "Walk-forward backtesting"
+      },
+      "techStack": [
+        "Python",
+        "LightGBM",
+        "Pandas",
+        "NumPy",
+        "Streamlit",
+        "Altair"
+      ],
+      "tags": [
+        "Machine Learning",
+        "Time-Series Forecasting",
+        "Regression",
+        "Feature Engineering"
+      ],
+      "featured": true,
+      "status": "Deployed (Project)",
+      "githubUrl": "https://github.com/Nashid-Noor/avian-influenza-forecast",
+      "demoUrl": "https://huggingface.co/spaces/nashid16/avian-influenza-forecast",
+      "links": []
+    },
+    {
+      "slug": "grid-qa-assistant",
+      "title": "Electricity Distribution RAG Assistant (Safety-Critical Knowledge System)",
+      "shortDescription": "Production-grade RAG system providing hallucination-free safety and maintenance guidance from technical manuals.",
+      "description": "Architected and deployed a production-grade Retrieval-Augmented Generation (RAG) system to provide safety and maintenance guidance from technical manuals. Features a secure ingestion pipeline, local FAISS vector search, and strict input/output guardrails to prevent prompt injection and PII leakage.",
+      "problemStatement": "Electricity distribution operators need instant, reliable access to dense technical and safety manuals. Standard LLMs hallucinate, which is unacceptable in safety-critical environments.",
+      "solution": "Built a modular RAG pipeline using FAISS and Gemini. Engineered multi-layer strict input/output guardrails. Implemented deterministic SHA-256 chunking for incremental updates and structured automated evaluation for retrieval accuracy.",
+      "impact": [
+        "Eliminated hallucinations through strict citation requirements and output guardrails",
+        "Secured interactions with prompt injection and PII leakage detection",
+        "Monitored live performance with structured JSON-lines logging and custom eval framework"
+      ],
+      "metrics": {
+        "architecture": "RAG",
+        "guardrails": "Input/Output Validation",
+        "vectorDb": "FAISS IndexFlatIP"
+      },
+      "techStack": [
+        "Python",
+        "FAISS",
+        "Gemini 1.5 Flash",
+        "Gradio",
+        "Sentence-Transformers"
+      ],
+      "tags": [
+        "RAG",
+        "Generative AI",
+        "NLP",
+        "Security",
+        "LLMs"
+      ],
+      "featured": true,
+      "status": "Deployed (Project)",
+      "githubUrl": "https://github.com/Nashid-Noor/Grid-Knowledge-Decision-Support-Assistant",
+      "demoUrl": "https://huggingface.co/spaces/nashid16/grid-qa-assistant",
+      "links": []
+    },
+    {
       "slug": "deep-learning-from-scratch",
       "title": "Deep Learning Architecture Implementations (From First Principles)",
       "shortDescription": "Implemented BERT, ViT, CLIP, ResNet from scratch in PyTorch and built a custom LoRA module for PEFT study.",
