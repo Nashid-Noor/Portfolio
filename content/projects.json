@@ -75,6 +75,44 @@
       "links": []
     },
     {
+      "slug": "grid-risk-platform",
+      "title": "grid-risk-platform",
+      "shortDescription": "End-to-end binary classification pipeline using XGBoost to predict high-impact power outages, with SHAP explainability and MLOps drift monitoring.",
+      "description": "Developed an end-to-end Machine Learning pipeline utilizing XGBoost and Logistic Regression to predict the probability of high-impact power outages, optimizing grid resilience and resource staging. Implemented global and local model explainability using SHAP, real-time automated Z-score anomaly detection, and Evidently batch reports to monitor data drift in production.",
+      "problemStatement": "High-impact power outage events cause significant disruption and require effective resource staging. Predicting these events proactively while maintaining explainability and strict governance is critical for grid operators.",
+      "solution": "Designed a production-ready MLOps framework with automated drift monitoring and retraining triggers based on feature distribution shifts. Deployed the XGBoost model via FastAPI, supported by formal Model Cards, risk assessments, and monitoring plans.",
+      "impact": [
+        "Evaluated with 5-fold cross-validation and PR-AUC/ROC-AUC metrics",
+        "Implemented real-time anomaly detection and operational drift monitoring using Evidently",
+        "Established a comprehensive enterprise AI governance layer (Model Cards, Risk Assessments)"
+      ],
+      "metrics": {
+        "evaluation": "5-fold CV",
+        "metrics": "PR-AUC / ROC-AUC",
+        "monitoring": "Evidently & Z-score"
+      },
+      "techStack": [
+        "Python",
+        "XGBoost",
+        "scikit-learn",
+        "FastAPI",
+        "SHAP",
+        "Evidently",
+        "Gradio"
+      ],
+      "tags": [
+        "Machine Learning",
+        "MLOps",
+        "Explainable AI",
+        "Governance"
+      ],
+      "featured": true,
+      "status": "Deployed (Project)",
+      "githubUrl": "https://github.com/Nashid-Noor/grid-risk-platform",
+      "demoUrl": "https://huggingface.co/spaces/nashid16/grid-risk-platform",
+      "links": []
+    },
+    {
       "slug": "deep-learning-from-scratch",
       "title": "Deep Learning Architecture Implementations (From First Principles)",
       "shortDescription": "Implemented BERT, ViT, CLIP, ResNet from scratch in PyTorch and built a custom LoRA module for PEFT study.",
