@@ -76,7 +76,7 @@
     },
     {
       "slug": "grid-risk-platform",
-      "title": "grid-risk-platform",
+      "title": "AI-Powered Grid Risk & Reliability Platform",
       "shortDescription": "End-to-end binary classification pipeline using XGBoost to predict high-impact power outages, with SHAP explainability and MLOps drift monitoring.",
       "description": "Developed an end-to-end Machine Learning pipeline utilizing XGBoost and Logistic Regression to predict the probability of high-impact power outages, optimizing grid resilience and resource staging. Implemented global and local model explainability using SHAP, real-time automated Z-score anomaly detection, and Evidently batch reports to monitor data drift in production.",
       "problemStatement": "High-impact power outage events cause significant disruption and require effective resource staging. Predicting these events proactively while maintaining explainability and strict governance is critical for grid operators.",
@@ -108,7 +108,7 @@
       ],
       "featured": true,
       "status": "Deployed (Project)",
-      "githubUrl": "https://github.com/Nashid-Noor/grid-risk-platform",
+      "githubUrl": "https://github.com/Nashid-Noor/AI-Powered-Grid-Risk-and-Reliability-Platform",
       "demoUrl": "https://huggingface.co/spaces/nashid16/grid-risk-platform?logs=container",
       "links": []
     },
