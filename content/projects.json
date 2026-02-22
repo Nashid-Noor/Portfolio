@@ -2,7 +2,7 @@
   "projects": [
     {
       "slug": "avian-influenza-forecast",
-      "title": "Avian Influenza Outbreak Forecasting & Risk Intelligence",
+      "title": "avian-influenza-forecast",
       "shortDescription": "End-to-end ML pipeline and interactive dashboard to forecast weekly Avian Influenza outbreaks with walk-forward validation (Global MAE 0.21).",
       "description": "Engineered an end-to-end Machine Learning pipeline and interactive risk dashboard designed to forecast weekly Avian Influenza outbreaks globally. Aggregates raw epidemiological event records, engineers time-series features, and utilizes a boosted tree regression model to serve a 4-week look-ahead forecast alongside a dynamic risk-level classification.",
       "problemStatement": "Disease outbreaks like Avian Influenza significantly impact global agriculture and trade. Accurately forecasting outbreaks requires complex time-series modelling to capture shifting biological trends and seasonality.",
@@ -39,7 +39,7 @@
     },
     {
       "slug": "grid-qa-assistant",
-      "title": "Electricity Distribution RAG Assistant (Safety-Critical Knowledge System)",
+      "title": "Grid-Knowledge-Decision-Support-Assistant",
       "shortDescription": "Production-grade RAG system providing hallucination-free safety and maintenance guidance from technical manuals.",
       "description": "Architected and deployed a production-grade Retrieval-Augmented Generation (RAG) system to provide safety and maintenance guidance from technical manuals. Features a secure ingestion pipeline, local FAISS vector search, and strict input/output guardrails to prevent prompt injection and PII leakage.",
       "problemStatement": "Electricity distribution operators need instant, reliable access to dense technical and safety manuals. Standard LLMs hallucinate, which is unacceptable in safety-critical environments.",
