@@ -3,23 +3,15 @@
   "experience": [
     {
       "company": "Wipro Limited",
-      "role": "Senior Software Engineer",
-      "period": "June 2023 – August 2024",
-      "location": "India",
-      "highlights": [
-        "Led the integration of Salesforce Einstein Prediction Builder into Enterprise Product Catalog (EPC) and Order Management workflows, enabling real-time predictive decisioning in live production systems.",
-        "Designed and owned ML inference pipelines using Integration Procedures and DataRaptors, orchestrating data preprocessing, model invocation, and downstream execution at enterprise scale.",
-        "Owned end-to-end production rollouts of ML-enabled features, including release validation, defect triage, and post-deployment stabilization in regulated enterprise environments."
-      ]
-    },
-    {
-      "company": "Wipro Limited",
       "role": "Software Engineer",
-      "period": "July 2021 – May 2023",
+      "period": "July 2021 – August 2024",
       "location": "India",
       "highlights": [
-        "Worked on enterprise Salesforce implementations for telecom client (Telefonica), integrating external systems via REST APIs to support large-scale data ingestion, order management, and AI-assisted decision workflows in production.",
-        "Built data transformation, orchestration, and validation logic using DataRaptors and Integration Procedures to support automated decision systems over large datasets."
+        "Developed backend services supporting automated telecom customer onboarding and service provisioning workflows across enterprise CRM systems.",
+        "Designed and implemented scalable REST APIs and orchestration services handling 100k+ customer transactions for product configuration and order lifecycle management.",
+        "Built data validation and transformation pipelines ensuring consistency across millions of telecom customer records and downstream provisioning systems.",
+        "Implemented event-driven asynchronous processing pipelines and integrated predictive AI model inference within CRM workflows, reducing manual onboarding effort by ~30%.",
+        "Integrated backend services with AWS (S3, Lambda) and supported production releases, defect resolution, and system reliability improvements."
       ]
     }
   ],
